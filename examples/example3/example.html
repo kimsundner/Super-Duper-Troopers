@@ -7,7 +7,7 @@
     }
     
     .node {
-        fill: rgb(85, 201, 172);
+        fill: white;
     }
     
     .cursor {
@@ -17,12 +17,18 @@
     }
     
     .link {
-        stroke: rgb(0, 0, 0);
+        stroke:whitesmoke;
     }
 
     html {
-        background:white;
+        background:black;
+        color: white;
     }
+
+    #button-start { 
+        
+    }
+
 </style>
 
 <body>
@@ -45,7 +51,7 @@
 
         var force = d3.layout.force()
             .size([width, height])
-            .nodes([{}]) // initialize with a single node
+            // .nodes([{}]) // initialize with a single node
             .linkDistance(30)
             .charge(-60)
             .on("tick", tick);
@@ -65,15 +71,15 @@
             node = svg.selectAll(".node"),
             link = svg.selectAll(".link");
 
-        var cursor = svg.append("circle")
-            .attr("r", 30)
-            .attr("transform", "translate(-100,-100)")
-            .attr("class", "cursor");
+        // var cursor = svg.append("circle")
+        //     .attr("r", 30)
+        //     .attr("transform", "translate(-100,-100)")
+        //     .attr("class", "cursor");
 
         restart();
 
         function mousemove() {
-            cursor.attr("transform", "translate(" + d3.mouse(this) + ")");
+            // cursor.attr("transform", "translate(" + d3.mouse(this) + ")");
         }
 
 
@@ -95,7 +101,7 @@
             nodes.forEach(function(target) {
                 var x = target.x - node.x,
                     y = target.y - node.y;
-                if (Math.sqrt(x * x + y * y) < 30) {
+                if (Math.sqrt(x * x + y * y) < 100) {
                     links.push({
                         source: node,
                         target: target
@@ -177,6 +183,7 @@ window.onload = function () {
        clearInterval(Interval);
 
      clearInterval(val);
+        
   }
   
 
@@ -186,6 +193,7 @@ window.onload = function () {
   	seconds = "00";
     appendTens.innerHTML = tens;
   	appendSeconds.innerHTML = seconds;
+      location.reload();
   }
   
    
