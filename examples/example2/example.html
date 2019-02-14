@@ -9,8 +9,10 @@
 </style>
 
 <body>
+    <h1 id = "dateText">TEST</h1>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script>
+        let dateText = document.getElementById("dateText");
         var now = d3.time.year.floor(new Date());
 
         var spacetime = d3.select('body');
@@ -106,7 +108,8 @@
         // Update the clock every second
         setInterval(function() {
             now = new Date();
-
+            console.log(now.getHours());
+            dateText.innerHTML = now.getFullYear() + ": " + now.getMonth() + ": " + now.getDate();
             var interpolateEarthOrbitPosition = d3.interpolate(earthOrbitPosition.endAngle()(), (2 * Math.PI * d3.time.hours(d3.time.year.floor(now), now).length / d3.time.hours(d3.time.year.floor(now), d3.time.year.ceil(now)).length));
 
             var interpolateDay = d3.interpolate(day.endAngle()(), (2 * Math.PI * d3.time.seconds(d3.time.day.floor(now), now).length / d3.time.seconds(d3.time.day.floor(now), d3.time.day.ceil(now)).length));
@@ -146,3 +149,4 @@
             });
         }, 1000);
     </script>
+    </body>
