@@ -7,7 +7,7 @@
     }
     
     .node {
-        fill: #000;
+        fill: rgb(85, 201, 172);
     }
     
     .cursor {
@@ -17,21 +17,28 @@
     }
     
     .link {
-        stroke: #999;
+        stroke: rgb(0, 0, 0);
+    }
+
+    html {
+        background:white;
     }
 </style>
 
 <body>
-        <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+    
+    <!-- Stopwatch buttons -->
+    <p><span id="seconds">00</span>:<span id="tens">00</span></p>
 
         <button id="button-start">Start</button>
         <button id="button-stop">Stop</button>
         <button id="button-reset">Reset</button>
 
-    <script src="//d3js.org/d3.v3.min.js"></script>
+   <!-- CDN! -->
+        <script src="//d3js.org/d3.v3.min.js"></script>
     <script>
 
-        var width = 960,
+        var width = 960;
             height = 500;
 
         var fill = d3.scale.category20();
@@ -153,6 +160,7 @@ window.onload = function () {
   var buttonReset = document.getElementById('button-reset');
   var Interval ;
 
+//Button function
   buttonStart.onclick = function() {
     
      clearInterval(Interval);
@@ -181,7 +189,7 @@ window.onload = function () {
   }
   
    
-  
+  //Starting timer, setting up the time parameters
   function startTimer () {
     tens++; 
     
