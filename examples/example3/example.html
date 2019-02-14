@@ -30,6 +30,7 @@
 
     <script src="//d3js.org/d3.v3.min.js"></script>
     <script>
+
         var width = 960,
             height = 500;
 
@@ -68,12 +69,19 @@
             cursor.attr("transform", "translate(" + d3.mouse(this) + ")");
         }
 
+
         function mousedown() {
-            var point = d3.mouse(this),
-                node = {
-                    x: point[0],
-                    y: point[1]
-                },
+            // OG CODE
+            // var point = d3.mouse(this),
+            //     node = {
+            //         x: point[0],
+            //         y: point[1]
+            //     },
+            //     n = nodes.push(node);
+            var node = {
+                    x: window.innerWidth * Math.random(),
+                    y: window.innerHeight * Math.random()
+                }
                 n = nodes.push(node);
 
             // add links to any nearby nodes
@@ -90,6 +98,8 @@
 
             restart();
         }
+
+
 
         function tick() {
             link.attr("x1", function(d) {
@@ -130,8 +140,9 @@
         }
 
 //Stopwatch
-
 window.onload = function () {
+
+    let val;
   
   var seconds = 00; 
   var tens = 00; 
@@ -146,10 +157,18 @@ window.onload = function () {
     
      clearInterval(Interval);
      Interval = setInterval(startTimer, 10);
+
+    
+    val = setInterval(function(){
+    mousedown()
+    console.log(1) 
+    },1000 );
   }
   
     buttonStop.onclick = function() {
        clearInterval(Interval);
+
+     clearInterval(val);
   }
   
 
