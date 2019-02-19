@@ -6,11 +6,28 @@
     font-family: sans-serif;
     font-style: italic;
   }
+
+  h1 {
+    color: #fff;
+  }
 </style>
+<head>
+  <title>My Audio</title>
+</head>
 
 <body>
+  <h1 id="dateText">TEST</h1>
   <script src="http://d3js.org/d3.v3.min.js"></script>
+
+  <audio src="../../assets/myAudio.mp3" id="my_audio" loop="loop"></audio>
+  <script type="text/javascript">
+    window.onload = function() {
+      document.getElementById("my_audio").play();
+    };
+  </script>
   <script>
+    var now = d3.time.year.floor(new Date());
+    let dateText = document.getElementById("dateText");
     var now = d3.time.year.floor(new Date());
 
     var spacetime = d3.select("body");
@@ -121,6 +138,10 @@
     // Update the clock every second
     setInterval(function() {
       now = new Date();
+
+      console.log(now.getHours());
+      dateText.innerHTML =
+        now.getFullYear() + ": " + now.getMonth() + ": " + now.getDate();
 
       var interpolateEarthOrbitPosition = d3.interpolate(
         earthOrbitPosition.endAngle()(),
