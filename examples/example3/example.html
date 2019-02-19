@@ -89,8 +89,8 @@
   <!-- CDN! -->
   <script src="//d3js.org/d3.v3.min.js"></script>
   <script>
+    
     //Size of "canvas", where the size of animation area is set
-
     var width = 960;
     height = 500;
 
@@ -122,25 +122,15 @@
       node = svg.selectAll(".node"),
       link = svg.selectAll(".link");
 
-    // var cursor = svg.append("circle")
-    //     .attr("r", 30)
-    //     .attr("transform", "translate(-100,-100)")
-    //     .attr("class", "cursor");
-
     restart();
 
     function mousemove() {
-      // cursor.attr("transform", "translate(" + d3.mouse(this) + ")");
+   //removed the code, but need to keep empty function
     }
 
+    //Function added to make the nodes come in from random locations
     function mousedown() {
-      // Original code we didn't need
-      // var point = d3.mouse(this),
-      //     node = {
-      //         x: point[0],
-      //         y: point[1]
-      //     },
-      //     n = nodes.push(node);
+      
       var node = {
         x: window.innerWidth * Math.random(),
         y: window.innerHeight * Math.random()
@@ -206,7 +196,7 @@
       force.start();
     }
 
-    //Stopwatch
+    //Stopwatch code
     window.onload = function() {
       let val;
 
@@ -219,23 +209,26 @@
       var buttonReset = document.getElementById("button-reset");
       var Interval;
 
-      //Button function
+      //Button function, to "manipulate"" timer
       buttonStart.onclick = function() {
         clearInterval(Interval);
         Interval = setInterval(startTimer, 10);
 
+        //Creating one node per second when starting the timer
         val = setInterval(function() {
           mousedown();
           console.log(1);
         }, 1000);
       };
-
+      
+      //Stop Timer
       buttonStop.onclick = function() {
         clearInterval(Interval);
 
         clearInterval(val);
       };
 
+      //Reset timer
       buttonReset.onclick = function() {
         clearInterval(Interval);
         tens = "00";
