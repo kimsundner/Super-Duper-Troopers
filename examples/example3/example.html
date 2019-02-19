@@ -27,27 +27,67 @@
         background:rgb(34, 33, 33);
         color: white;
     }
-
-    #button-start { 
-       font-size: 25px;
-
+    body {
+ 
     }
 
+/*Added Styling on buttons and layering of the animation*/
+    #button-start, #button-stop, #button-reset { 
+        font-size: 25px;
+        border-radius: 12px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-family:sans-serif;
+    }
+ #numbers {
+position: absolute;
+z-index: 100;
+left: 10%;
+top: 10%;
+ }
+     
+ #button-start {
+ position: absolute;
+left: 30%;
+top: 5%;
+z-index: 500;
+}
+#button-stop {
+ position: absolute;
+left: 40%;
+top: 5%;
+z-index: 500;
+}
+#button-reset {
+ position: absolute;
+left: 50%;
+top: 5%;
+z-index: 500;
+}
+svg {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
 </style>
 
 <body>
     
     <!-- Stopwatch buttons -->
-    <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+    <div id="numbers"><span id="seconds">00</span>:<span id="tens">00</span></div>
 
-        <button id="button-start">Start</button>
-        <button id="button-stop">Stop</button>
-        <button id="button-reset">Reset</button>
+        <button id="button-start">START</button>
+        <button id="button-stop">STOP</button>
+        <button id="button-reset">RESET</button>
 
    <!-- CDN! -->
         <script src="//d3js.org/d3.v3.min.js"></script>
     <script>
-//Size of canvas
+
+//Size of "canvas", where the size of animation area is set
+
         var width = 960;
             height = 500;
 
@@ -65,6 +105,7 @@
             .attr("height", height)
             .on("mousemove", mousemove)
             .on("mousedown", mousedown);
+            
 
         svg.append("rect")
             .attr("width", width)
