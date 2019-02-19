@@ -24,7 +24,7 @@
   <script>
     var now = d3.time.year.floor(new Date());
     let dateText = document.getElementById("dateText");
-        var now = d3.time.year.floor(new Date());
+    var now = d3.time.year.floor(new Date());
 
     var spacetime = d3.select("body");
     var width = innerWidth,
@@ -135,9 +135,9 @@
     setInterval(function() {
       now = new Date();
 
-            console.log(now.getHours());
-            dateText.innerHTML = now.getFullYear() + ": " + now.getMonth() + ": " + now.getDate();
-           
+      console.log(now.getHours());
+      dateText.innerHTML =
+        now.getFullYear() + ": " + now.getMonth() + ": " + now.getDate();
 
       var interpolateEarthOrbitPosition = d3.interpolate(
         earthOrbitPosition.endAngle()(),
