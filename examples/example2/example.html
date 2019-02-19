@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8" />
 <style>
+  /* Changed the background */
   body {
     background-image: url("/assets/space.gif");
     font-family: sans-serif;
@@ -21,6 +22,7 @@
   <h1 id="dateText">TEST</h1>
   <script src="http://d3js.org/d3.v3.min.js"></script>
 
+  <!-- Added audio onload -->
   <audio src="../../assets/myAudio.mp3" id="my_audio" loop="loop"></audio>
   <script type="text/javascript">
     window.onload = function() {
@@ -28,6 +30,7 @@
     };
   </script>
   <script>
+    // Added calender
     var now = d3.time.year.floor(new Date());
     let dateText = document.getElementById("dateText");
     var now = d3.time.year.floor(new Date());
@@ -137,7 +140,7 @@
       )
       .style("fill", "rgba(150, 150, 150, 1.0)");
 
-    // Update the clock every second
+    // Update the clock and calender every second
     setInterval(function() {
       now = new Date();
 
