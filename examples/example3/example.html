@@ -1,5 +1,8 @@
+<!-- Example name: Build Your Own Graph! -->
 <!DOCTYPE html>
 <meta charset="utf-8">
+
+<!-- Styling -->
 <style>
     rect {
         fill: none;
@@ -7,7 +10,7 @@
     }
     
     .node {
-        fill: #000;
+        fill: rgb(231, 235, 41);
     }
     
     .cursor {
@@ -17,21 +20,82 @@
     }
     
     .link {
-        stroke: #999;
+        stroke:whitesmoke;
     }
+
+    html {
+        background:rgb(34, 33, 33);
+        color: white;
+    }
+    body {
+ 
+    }
+
+/*Added Styling on buttons and layering of the animation*/
+    #button-start, #button-stop, #button-reset { 
+        font-size: 25px;
+        border-radius: 12px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-family:sans-serif;
+    }
+ #numbers {
+position: absolute;
+z-index: 100;
+left: 10%;
+top: 10%;
+ }
+     
+ #button-start {
+ position: absolute;
+left: 30%;
+top: 5%;
+z-index: 500;
+}
+#button-stop {
+ position: absolute;
+left: 40%;
+top: 5%;
+z-index: 500;
+}
+#button-reset {
+ position: absolute;
+left: 50%;
+top: 5%;
+z-index: 500;
+}
+svg {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
 </style>
 
 <body>
-    <script src="//d3js.org/d3.v3.min.js"></script>
+    
+    <!-- Stopwatch buttons -->
+    <div id="numbers"><span id="seconds">00</span>:<span id="tens">00</span></div>
+
+        <button id="button-start">START</button>
+        <button id="button-stop">STOP</button>
+        <button id="button-reset">RESET</button>
+
+   <!-- CDN! -->
+        <script src="//d3js.org/d3.v3.min.js"></script>
     <script>
-        var width = 960,
+
+//Size of "canvas", where the size of animation area is set
+
+        var width = 960;
             height = 500;
 
         var fill = d3.scale.category20();
 
         var force = d3.layout.force()
             .size([width, height])
-            .nodes([{}]) // initialize with a single node
+            // .nodes([{}]) // initialize with a single node
             .linkDistance(30)
             .charge(-60)
             .on("tick", tick);
@@ -41,6 +105,7 @@
             .attr("height", height)
             .on("mousemove", mousemove)
             .on("mousedown", mousedown);
+            
 
         svg.append("rect")
             .attr("width", width)
@@ -51,30 +116,37 @@
             node = svg.selectAll(".node"),
             link = svg.selectAll(".link");
 
-        var cursor = svg.append("circle")
-            .attr("r", 30)
-            .attr("transform", "translate(-100,-100)")
-            .attr("class", "cursor");
+        // var cursor = svg.append("circle")
+        //     .attr("r", 30)
+        //     .attr("transform", "translate(-100,-100)")
+        //     .attr("class", "cursor");
 
         restart();
 
         function mousemove() {
-            cursor.attr("transform", "translate(" + d3.mouse(this) + ")");
+            // cursor.attr("transform", "translate(" + d3.mouse(this) + ")");
         }
 
+
         function mousedown() {
-            var point = d3.mouse(this),
-                node = {
-                    x: point[0],
-                    y: point[1]
-                },
+            // OG CODE
+            // var point = d3.mouse(this),
+            //     node = {
+            //         x: point[0],
+            //         y: point[1]
+            //     },
+            //     n = nodes.push(node);
+            var node = {
+                    x: window.innerWidth * Math.random(),
+                    y: window.innerHeight * Math.random()
+                }
                 n = nodes.push(node);
 
             // add links to any nearby nodes
             nodes.forEach(function(target) {
                 var x = target.x - node.x,
                     y = target.y - node.y;
-                if (Math.sqrt(x * x + y * y) < 30) {
+                if (Math.sqrt(x * x + y * y) < 100) {
                     links.push({
                         source: node,
                         target: target
@@ -84,6 +156,8 @@
 
             restart();
         }
+
+
 
         function tick() {
             link.attr("x1", function(d) {
@@ -122,4 +196,79 @@
 
             force.start();
         }
+
+//Stopwatch
+window.onload = function () {
+
+    let val;
+  
+  var seconds = 00; 
+  var tens = 00; 
+  var appendTens = document.getElementById("tens")
+  var appendSeconds = document.getElementById("seconds")
+  var buttonStart = document.getElementById('button-start');
+  var buttonStop = document.getElementById('button-stop');
+  var buttonReset = document.getElementById('button-reset');
+  var Interval ;
+
+//Button function
+  buttonStart.onclick = function() {
+    
+     clearInterval(Interval);
+     Interval = setInterval(startTimer, 10);
+
+    
+    val = setInterval(function(){
+    mousedown()
+    console.log(1) 
+    },1000 );
+  }
+  
+    buttonStop.onclick = function() {
+       clearInterval(Interval);
+
+     clearInterval(val);
+        
+  }
+  
+
+  buttonReset.onclick = function() {
+     clearInterval(Interval);
+    tens = "00";
+  	seconds = "00";
+    appendTens.innerHTML = tens;
+  	appendSeconds.innerHTML = seconds;
+      location.reload();
+  }
+  
+   
+  //Starting timer, setting up the time parameters
+  function startTimer () {
+    tens++; 
+    
+    if(tens < 9){
+      appendTens.innerHTML = "0" + tens;
+    }
+    
+    if (tens > 9){
+      appendTens.innerHTML = tens;
+      
+    } 
+    
+    if (tens > 99) {
+      console.log("seconds");
+      seconds++;
+      appendSeconds.innerHTML = "0" + seconds;
+      tens = 0;
+      appendTens.innerHTML = "0" + 0;
+    }
+    
+    if (seconds > 9){
+      appendSeconds.innerHTML = seconds;
+    }
+  
+  }
+  
+
+}
     </script>
