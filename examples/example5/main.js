@@ -28,7 +28,7 @@ var width = 500,
 
     var points = d3.range(start, end + 0.001, (end - start) / 1000);
 
-    //update based on time
+    //Added some functionality over time through an update function based on a time interval
     var i = 0;
     var timeInterval = 100;
     setInterval(function(){
@@ -41,11 +41,11 @@ var width = 500,
         d3.select("svg")
         .attr("transform", " rotate(" + n + ")");
         someData.forEach(element => {
-            element.value = Math.random();
+            element.value = Math.random();//change each node's value
         });
         svg.selectAll("rect")
         .attr("height", function(d){
-            return yScale(d.value);
+            return yScale(d.value); //change the height of each node based on it's value
         })
     }
 
