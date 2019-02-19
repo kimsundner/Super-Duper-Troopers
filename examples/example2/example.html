@@ -135,6 +135,10 @@
     setInterval(function() {
       now = new Date();
 
+            console.log(now.getHours());
+            dateText.innerHTML = now.getFullYear() + ": " + now.getMonth() + ": " + now.getDate();
+           
+
       var interpolateEarthOrbitPosition = d3.interpolate(
         earthOrbitPosition.endAngle()(),
         (2 * Math.PI * d3.time.hours(d3.time.year.floor(now), now).length) /
