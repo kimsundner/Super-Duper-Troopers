@@ -8,5 +8,4 @@ It is a representation of the current time of year using the Sun, Earth, and Moo
 
 The position of the Earth in orbit around the Sun indicates the month of year. The Earth itself is a pie chart indicating the hour of day. The Moon's position in orbit around the Earth indicates the day of the month. The time is updated every second.
 
-
-Nefeli & Zakiya
+Worked on by Nefeli Alousi and Zakiya Pierre
